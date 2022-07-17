@@ -1,0 +1,3 @@
+alias updt='sudo apt update && sudo apt dist-upgrade -y && sudo apt autoremove -y && sudo apt autoclean -y'
+alias scrn='screen -S awicher'
+alias tor='~/Applications/Tor/tor-browser_en-US/Browser/start-tor-browser'
