@@ -107,4 +107,9 @@ source $ZSH/oh-my-zsh.sh
 #require .zsh_aliases
 if [ -f ~/.zsh_aliases ]; then
 	source ~/.zsh_aliases
-fi	
+fi
+
+#require .zsh_profile
+if [ -f ~/.zsh_profle ]; then
+	source ~/.zsh_profile
+fi
