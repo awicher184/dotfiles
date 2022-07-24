@@ -26,7 +26,7 @@ set ignorecase
 set smartcase
 
 " stop auto comment in new line
-set formatoptions-=cro
+autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 
 " split settings
 set splitbelow
@@ -34,21 +34,21 @@ set splitright
 
 set hidden
 set scrolloff=10
-set colorcolumn=80
-set signcolumn=yes 
-set guicursor=
-set formatoptions-=cro
+set encoding=utf8
+"set colorcolumn=80
+"set signcolumn=yes 
+"set guicursor=
 
 " keybindings
 
 " leader key
-set mapleader=" "
+let mapleader=" "
 
 " open terminal
 nnoremap <leader>t :term<CR>
 
-" yank and put to system clipboard
-nnoremap <leader>y "*y
-
-" paste from system clipboard
-nnoremap <leader>p "*p
+" shortcuts split navigation
+map <C-h> <C-w>h
+map <C-j> <C-w>j
+map <C-k> <C-w>k
+map <C-l> <C-w>l
