@@ -1,12 +1,42 @@
+-- line numbers
 set number
 set relativenumber
-set tabstop=4 softtabstop=4
+
+-- tab & indent settings
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
 set expandtab
 set smartindent
-set scrolloff=10
-set guicursor=
+
+-- backup settings
+set backupdir=/tmp
+set directory=~/.config/nvim/tmp
+set backup
+
+-- persistent undo between opening and closing
+set undofile
+
+-- search
 set nohlsearch
 set incsearch
+set ignorecase
+set smartcase
+
+-- stop auto comment in new line
+set formatoptions-=cro
+
+-- split settings
+set splitbelow
+set splitright
+
 set hidden
-"set colorcolumn=80
-"set signcolumn=yes
+set scrolloff=10
+set colorcolumn=80
+set signcolumn=yes 
+set guicursor=
+
+-- keybindings
+
+-- leader key
+set mapleader=" "
