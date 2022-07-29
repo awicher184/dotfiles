@@ -1,8 +1,16 @@
+" basic settings
 syntax on
+colorscheme tokyonight
 
-" line numbers
-set number
 set relativenumber
+set number
+set scrolloff=10   
+
+set hidden       
+set encoding=utf8   
+"set colorcolumn=80 
+"set signcolumn=yes 
+"set guicursor=
 
 " tab & indent settings
 set tabstop=4
@@ -32,6 +40,8 @@ autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o
 set splitbelow
 set splitright
 
+" basic settings
+colorscheme tokyonight
 set hidden
 set scrolloff=10
 set encoding=utf8
@@ -59,3 +69,7 @@ if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
     \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 endif
+
+call plug#begin('~/.vim/plugged')
+    Plug 'folke/tokyonight.nvim', { 'branch': 'main' }
+call plug#end()
