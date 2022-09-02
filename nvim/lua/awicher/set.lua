@@ -7,6 +7,10 @@ vim.opt.scrolloff = 10
 vim.opt.encoding = "utf-8" 
 vim.opt.colorcolumn = "80" 
 vim.opt.signcolumn = "yes" 
+vim.opt.fillchars:append({ eob = ' ' })-- remove the ~ from end of buffer
+vim.opt.clipboard = 'unnamedplus'-- Use Linux system clipboard
+vim.opt.wrap = false
+vim.opt.breakindent = true -- maintain indent when wrapping indented lines
 
 -- line numbers
 vim.opt.nu = true 
