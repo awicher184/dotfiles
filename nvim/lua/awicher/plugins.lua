@@ -44,6 +44,7 @@ return packer.startup(function(use)
   use "wbthomason/packer.nvim"
   use "nvim-lua/popup.nvim"
   use "nvim-lua/plenary.nvim"
+  use "folke/tokyonight"
 
   -- Automatically set up the config after cloning packer.nvim
   -- Put this at the end after all plugins
