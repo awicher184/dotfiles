@@ -1,1 +1,5 @@
-require("awicher")
+require("awicher.options")
+require("awicher.keymaps")
+require("awicher.plugins")
+require("awicher.colorscheme")
+require("awicher.completion")
