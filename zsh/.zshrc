@@ -18,8 +18,12 @@ else
 fi
 
 #source aliases
-if [ -f ~/.config/zsh/zsh_aliases ]; then
+if [[ -f ~/.config/zsh/zsh_aliases ]]; then
   source ~/.config/zsh/zsh_aliases
+fi
+
+if [[ -f ~/.config/zsh/zsh_history_config ]]; then
+  source ~/.config/zsh/zsh_history_config
 fi
 
 export NVM_DIR="$HOME/.nvm"
