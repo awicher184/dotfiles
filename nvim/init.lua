@@ -148,6 +148,14 @@ require('lazy').setup({
       vim.cmd('colorscheme dayfox')
     end,
   },
+  {
+    "chiendo97/intellij.vim",
+    name = "intellij",
+    priority = 1000,
+    --[[ config = function()
+      vim.cmd('colorscheme intellij')
+    end, ]]
+  },
   --[[ {
     "sainnhe/edge",
     name = "edge",
@@ -156,14 +164,14 @@ require('lazy').setup({
       vim.cmd('colorscheme edge')
     end,
   }, ]]
-  {
+  --[[ {
     "yorik1984/newpaper.nvim",
     name = "newpaper",
     priority = 1000,
     config = function()
       vim.cmd('colorscheme newpaper')
     end,
-  },
+  }, ]]
   {
     'nvim-lualine/lualine.nvim',
     opts = {
