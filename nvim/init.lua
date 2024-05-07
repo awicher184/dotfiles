@@ -132,12 +132,36 @@ require('lazy').setup({
       end,
     },
   },
-  {
+  --[[ {
     'projekt0n/github-nvim-theme',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
+    lazy = false,
+    priority = 1000,
     config = function()
       vim.cmd('colorscheme github_light')
+    end,
+  }, ]]
+  {
+    "EdenEast/nightfox.nvim",
+    name = "nightfox",
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme dayfox')
+    end,
+  },
+  --[[ {
+    "sainnhe/edge",
+    name = "edge",
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme edge')
+    end,
+  }, ]]
+  {
+    "yorik1984/newpaper.nvim",
+    name = "newpaper",
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme newpaper')
     end,
   },
   {
@@ -145,7 +169,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'onelight',
+        theme = 'dayfox',
         component_separators = '|',
         section_separators = '',
       },
@@ -259,6 +283,8 @@ vim.opt.background = 'light';
 -- Keymaps for better default experience
 -- See `:help vim.keymap.set()`
 vim.keymap.set({ 'n', 'v' }, '<Space>', '<Nop>', { silent = true })
+vim.keymap.set('n', '<C-d>', '<C-d>zz', {})
+vim.keymap.set('n', '<C-u>', '<C-u>zz', {})
 
 -- Remap for dealing with word wrap
 vim.keymap.set('n', 'k', "v:count == 0 ? 'gk' : 'k'", { expr = true, silent = true })
