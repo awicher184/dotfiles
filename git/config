@@ -1,0 +1,7 @@
+[user]
+	email = awicher@proton.me
+	name = A. Wicher
+[pull]
+	ff = only
+[core]
+	editor = nvim
