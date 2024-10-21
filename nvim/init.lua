@@ -149,6 +149,15 @@ require('lazy').setup({
     end,
   },
   {
+    "neanias/everforest-nvim",
+    priority = 1000,
+    config = function()
+      require("everforest").setup({
+        background = "hard"
+      })
+    end,
+  },
+  {
     "chiendo97/intellij.vim",
     name = "intellij",
     priority = 1000,
@@ -177,7 +186,7 @@ require('lazy').setup({
     opts = {
       options = {
         icons_enabled = false,
-        theme = 'dayfox',
+        theme = 'everforest',
         component_separators = '|',
         section_separators = '',
       },
@@ -234,6 +243,17 @@ require('lazy').setup({
     opts = {},
     -- Optional dependencies
     dependencies = { "nvim-tree/nvim-web-devicons" },
+  },
+  {
+    "nvim-neo-tree/neo-tree.nvim",
+    branch = "v3.x",
+    dependencies = {
+      "MunifTanjim/nui.nvim",
+      -- "3rd/image.nvim", -- Optional image support in preview window: See `# Preview Mode` for more information
+    }
+  },
+  {
+    'dmix/elvish.vim'
   }
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
@@ -316,6 +336,11 @@ vim.keymap.set('n', '<leader>q', vim.diagnostic.setloclist, { desc = 'Open diagn
 
 -- Oil keymap
 vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
+
+-- Neotree keymap
+vim.keymap.set("n", "<C-e>", "<CMD>Neotree toggle<CR>", { desc = "Open Neotree" })
+vim.keymap.set("n", "<S-e>", "<CMD>Neotree reveal<CR>", { desc = "Jump to file in Neotree" })
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
@@ -402,10 +427,19 @@ local function telescope_live_grep_open_files()
     prompt_title = 'Live Grep in Open Files',
   }
 end
+
+local function telescope_find_hidden_and_ignored()
+  require('telescope.builtin').find_files ({
+    hidden = true,
+    no_ignore = true,
+    no_ignore_parent = true
+  })
+end
+
 vim.keymap.set('n', '<leader>s/', telescope_live_grep_open_files, { desc = '[S]earch [/] in Open Files' })
 vim.keymap.set('n', '<leader>ss', require('telescope.builtin').builtin, { desc = '[S]earch [S]elect Telescope' })
 vim.keymap.set('n', '<leader>gf', require('telescope.builtin').git_files, { desc = 'Search [G]it [F]iles' })
-vim.keymap.set('n', '<leader>sf', require('telescope.builtin').find_files, { desc = '[S]earch [F]iles' })
+vim.keymap.set('n', '<leader>sf', telescope_find_hidden_and_ignored, { desc = '[S]earch [F]iles' })
 vim.keymap.set('n', '<leader>sh', require('telescope.builtin').help_tags, { desc = '[S]earch [H]elp' })
 vim.keymap.set('n', '<leader>sw', require('telescope.builtin').grep_string, { desc = '[S]earch current [W]ord' })
 vim.keymap.set('n', '<leader>sg', require('telescope.builtin').live_grep, { desc = '[S]earch by [G]rep' })
@@ -697,5 +731,36 @@ require('oil').setup({
   },
 })
 
+require('neo-tree').setup({
+  enable_git_status = true,
+  filesystem = {
+    filtered_items = {
+      visible = true,
+      show_hidden_count = true,
+      hide_dotfiles = false,
+      hide_gitignored = false,
+      hide_by_name = {
+        '.git',
+        -- '.DS_Store',
+        -- 'thumbs.db',
+      },
+    }
+  },
+  window = {
+    position = "right",
+    width = 60,
+  }
+})
+
+-- bash lsp
+vim.api.nvim_create_autocmd('FileType', {
+  pattern = 'sh',
+  callback = function()
+    vim.lsp.start({
+      name = 'bash-language-server',
+      cmd = { 'bash-language-server', 'start' },
+    })
+  end,
+})
 -- The line beneath this is called `modeline`. See `:help modeline`
 -- vim: ts=2 sts=2 sw=2 et
