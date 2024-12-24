@@ -306,6 +306,9 @@ vim.o.splitright = true
 -- Keep signcolumn on by default
 vim.wo.signcolumn = 'yes'
 
+-- Highlight current line
+vim.o.cursorline = true
+
 -- Decrease update time
 vim.o.updatetime = 250
 vim.o.timeoutlen = 300
@@ -316,6 +319,15 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 vim.opt.background = 'light';
+
+vim.o.autoindent = true
+vim.o.expandtab = false
+vim.opt.tabstop = 4
+vim.opt.shiftwidth = 4
+vim.o.autoread = true
+vim.o.autowrite = true
+vim.o.autowriteall = true
+
 -- [[ Basic Keymaps ]]
 
 -- Keymaps for better default experience
