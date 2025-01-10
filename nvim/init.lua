@@ -353,6 +353,23 @@ vim.keymap.set("n", "-", "<CMD>Oil<CR>", { desc = "Open parent directory" })
 vim.keymap.set("n", "<C-e>", "<CMD>Neotree toggle<CR>", { desc = "Open Neotree" })
 vim.keymap.set("n", "<S-e>", "<CMD>Neotree reveal<CR>", { desc = "Jump to file in Neotree" })
 
+-- auto-read buffers after file being changed on disk
+vim.api.nvim_create_autocmd(
+  { "BufEnter", "CursorHold", "CursorHoldI", "FocusGained" },
+  {
+    command = "if mode() != 'c' | checktime | endif",
+    pattern = { "*" },
+  }
+)
+-- echo message that buffer has been reloaded after file being changed on disk
+vim.api.nvim_create_autocmd(
+  { "FileChangedShellPost" },
+  {
+    command = 'echohl WarningMsg | echo "File changed on disk. Buffer reloaded." | echohl None',
+    pattern = { "*" }, }
+)
+
+
 -- [[ Highlight on yank ]]
 -- See `:help vim.highlight.on_yank()`
 local highlight_group = vim.api.nvim_create_augroup('YankHighlight', { clear = true })
