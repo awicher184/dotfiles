@@ -254,7 +254,11 @@ require('lazy').setup({
   },
   {
     'dmix/elvish.vim'
+  },
+  {
+    'm4xshen/autoclose.nvim'
   }
+
   -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
   --       These are some example plugins that I've included in the kickstart repository.
   --       Uncomment any of the lines below to enable them.
@@ -273,6 +277,7 @@ require('lazy').setup({
 -- See `:help vim.o`
 -- NOTE: You can change these options as you wish!
 
+require("autoclose").setup()
 -- Set highlight on search
 vim.o.hlsearch = false
 
