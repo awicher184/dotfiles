@@ -12,6 +12,11 @@ alias pip=pip3
 alias pts='sh /home/user/projects/scripts/bash_scripts/praiseTheSun.sh'
 alias ptm='sh /home/user/projects/scripts/bash_scripts/praiseTheMoon.sh'
 alias terminal-parrot='/home/user/Applications/terminal-parrot/terminal-parrot'
+#vim like exiting
+alias :q='exit'
+alias :wq='exit'
+alias :Q='exit'
+alias :wQ='exit'
 #git
 alias gs='git status'
 alias gf='git fetch'
