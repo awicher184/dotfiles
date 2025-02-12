@@ -398,7 +398,7 @@ require('telescope').setup {
     },
     layout_strategy = 'vertical',
     layout_config = {
-      width = 0.6,
+      width = 0.9,
       mirror = true,
       prompt_position = 'top'
     },
