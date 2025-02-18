@@ -402,9 +402,28 @@ require('telescope').setup {
       mirror = true,
       prompt_position = 'top'
     },
+    sorting_strategy = 'descending', -- Ensures results stay visually structured
   },
+  pickers = {
+    lsp_references = {
+      entry_maker = function(entry)
+        -- Extract filename and line number
+        local file_name = entry.filename or '[No Name]'
+        local line_number = entry.lnum or '0'
+        -- Format result to only show filename:line_number
+        return {
+          value = entry,
+          display = function()
+            return string.format("%s:%d", file_name, line_number)
+          end,
+          ordinal = file_name .. ":" .. line_number,
+          filename = file_name,
+          lnum = line_number,
+        }
+      end
+    }
+  }
 }
-
 -- Enable telescope fzf native, if installed
 pcall(require('telescope').load_extension, 'fzf')
 
