@@ -388,6 +388,22 @@ vim.api.nvim_create_autocmd('TextYankPost', {
 
 -- [[ Configure Telescope ]]
 -- See `:help telescope` and `:help telescope.setup()`
+local function custom_entry_maker(entry)
+  -- Extract filename and line number
+  local file_name = entry.filename or '[No Name]'
+  local line_number = entry.lnum or '0'
+  -- Format result to only show filename:line_number
+  return {
+    value = entry,
+    display = function()
+      return string.format("%s:%d", file_name, line_number)
+    end,
+    ordinal = file_name .. ":" .. line_number,
+    filename = file_name,
+    lnum = line_number,
+  }
+end
+
 require('telescope').setup {
   defaults = {
     mappings = {
@@ -402,25 +418,14 @@ require('telescope').setup {
       mirror = true,
       prompt_position = 'top'
     },
-    sorting_strategy = 'descending', -- Ensures results stay visually structured
+    sorting_strategy = 'descending',
   },
   pickers = {
     lsp_references = {
-      entry_maker = function(entry)
-        -- Extract filename and line number
-        local file_name = entry.filename or '[No Name]'
-        local line_number = entry.lnum or '0'
-        -- Format result to only show filename:line_number
-        return {
-          value = entry,
-          display = function()
-            return string.format("%s:%d", file_name, line_number)
-          end,
-          ordinal = file_name .. ":" .. line_number,
-          filename = file_name,
-          lnum = line_number,
-        }
-      end
+      entry_maker = custom_entry_maker
+    },
+    lsp_definitions = {
+      entry_maker = custom_entry_maker
     }
   }
 }
