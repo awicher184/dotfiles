@@ -5,7 +5,7 @@ alias dirsize='sudo du -sh'
 alias pwdsize='sudo du -sh $(pwd)'
 alias findpath='dpkg-query -L'
 alias tmx='~/.local/bin/tmux-sessionizer'
-alias goodmorningjarvis='/home/user/projects/scripts/bash_scripts/jarvis/startup.sh'
+alias goodmorningjarvis='/home/user/projects/scripts/bash/jarvis/startup.sh'
 alias thankyoujarvis='sleep 5 && halt -p'
 alias python=python3
 alias pip=pip3
@@ -47,3 +47,4 @@ alias phpstan='/bin/php -d memory_limit=-1 /home/user/projects/spryker/vendor/bi
 alias cs='git diff --diff-filter=ACM --name-only development -- src | xargs vendor/bin/phpcs'
 alias cbf='git diff --diff-filter=ACM --name-only development -- src | xargs vendor/bin/phpcbf'
 alias tests='composer test'
+alias itests='dskco code:test'
