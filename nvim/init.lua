@@ -132,14 +132,14 @@ require('lazy').setup({
       end,
     },
   },
-  --[[ {
+  --[[  {
     'projekt0n/github-nvim-theme',
     lazy = false,
     priority = 1000,
     config = function()
       vim.cmd('colorscheme github_light')
     end,
-  }, ]]
+  }, --]]
   {
     "EdenEast/nightfox.nvim",
     name = "nightfox",
@@ -157,14 +157,14 @@ require('lazy').setup({
       })
     end,
   },
-  {
+  --[[ {
     "chiendo97/intellij.vim",
     name = "intellij",
     priority = 1000,
-    --[[ config = function()
+    config = function()
       vim.cmd('colorscheme intellij')
-    end, ]]
-  },
+    end,
+  }, ]]
   --[[ {
     "sainnhe/edge",
     name = "edge",
@@ -172,15 +172,23 @@ require('lazy').setup({
     config = function()
       vim.cmd('colorscheme edge')
     end,
-  }, ]]
-  --[[ {
+  },]]
+  --[[{
     "yorik1984/newpaper.nvim",
     name = "newpaper",
     priority = 1000,
     config = function()
       vim.cmd('colorscheme newpaper')
     end,
-  }, ]]
+  },]]
+  --[[ {
+    "folke/tokyonight.nvim",
+    name = "tokyonight",
+    priority = 1000,
+    config = function()
+      vim.cmd('colorscheme tokyonight-day')
+    end,
+  },]]
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -284,6 +292,7 @@ vim.o.hlsearch = false
 -- Make line numbers default
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.wo.wrap =false
 
 -- Enable mouse mode
 vim.o.mouse = 'a'
@@ -655,7 +664,6 @@ local servers = {
   -- gopls = {},
   -- rust_analyzer = {},
   phpactor = { filetypes = {'php'}, language_server_phpstan= {enabled = false} },
-  intelephense = {  filetypes = {'php'} },
   html = { filetypes = { 'html', 'twig', 'hbs'} },
   tsserver = {},
   pyright = {},
@@ -686,13 +694,24 @@ mason_lspconfig.setup {
 
 mason_lspconfig.setup_handlers {
   function(server_name)
-    require('lspconfig')[server_name].setup {
-      capabilities = capabilities,
-      on_attach = on_attach,
-      settings = servers[server_name],
-      filetypes = (servers[server_name] or {}).filetypes,
-    }
-  end,
+    if server_name == 'phpactor' then
+      require('lspconfig').phpactor.setup({
+        capabilities = capabilities,
+        on_attach = on_attach,
+        init_options = {
+          ["language_server_phpstan.enabled"] = false,
+        },
+        filetypes = { "php" }
+      })
+    else
+      require('lspconfig')[server_name].setup {
+        capabilities = capabilities,
+        on_attach = on_attach,
+        settings = servers[server_name],
+        filetypes = (servers[server_name] or {}).filetypes,
+      }
+    end
+  end
 }
 
 -- [[ Configure nvim-cmp ]]
