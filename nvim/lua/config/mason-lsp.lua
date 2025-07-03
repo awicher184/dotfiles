@@ -83,7 +83,7 @@ local servers = {
   -- rust_analyzer = {},
   phpactor = { filetypes = {'php'}, language_server_phpstan= {enabled = false} },
   html = { filetypes = { 'html', 'twig', 'hbs'} },
-  tsserver = {},
+  ts_ls = {},
   pyright = {},
   lua_ls = {
     Lua = {
