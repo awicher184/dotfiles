@@ -40,19 +40,11 @@ require('neodev').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
     'phpactor',
-    'html',
+    'html_ls',
     'ts_ls',
-    'pyright',
     'lua_ls',
   },
   automatic_enable = true,
-})
-
--- Configure LSP servers using the new vim.lsp.config API (Neovim 0.11+)
--- Global configuration for all LSP servers
-vim.lsp.config('*', {
-  on_attach = on_attach,
-  capabilities = capabilities,
 })
 
 -- Server-specific configurations
@@ -60,10 +52,14 @@ vim.lsp.config('phpactor', {
   init_options = {
     ['language_server_phpstan.enabled'] = false,
   },
+  on_attach = on_attach,
+  capabilities = capabilities
 })
 
 vim.lsp.config('html', {
   filetypes = { 'html', 'twig', 'hbs' },
+  on_attach = on_attach,
+  capabilities = capabilities
 })
 
 vim.lsp.config('lua_ls', {
@@ -73,4 +69,20 @@ vim.lsp.config('lua_ls', {
       telemetry = { enable = false },
     },
   },
+  on_attach = on_attach,
+  capabilities = capabilities
+})
+
+vim.lsp.config('ts_ls', {
+  cmd = { 'typescript-language-server', '--stdio' },
+  filetypes = {
+    'javascript',
+    'javascriptreact',
+    'javascript.jsx',
+    'typescript',
+    'typescriptreact',
+    'typescript.tsx',
+  },
+  on_attach = on_attach,
+  capabilities = capabilities
 })
