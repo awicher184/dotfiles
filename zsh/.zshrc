@@ -17,9 +17,12 @@ else
   export EDITOR='vim'
 fi
 
-#source aliases
 if [[ -f ~/.config/zsh/zsh_aliases ]]; then
   source ~/.config/zsh/zsh_aliases
+fi
+
+if [[ -f ~/.config/zsh/zsh_functions ]]; then
+  source ~/.config/zsh/zsh_functions
 fi
 
 if [[ -f ~/.config/zsh/zsh_history_config ]]; then
