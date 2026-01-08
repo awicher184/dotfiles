@@ -40,7 +40,7 @@ require('neodev').setup()
 require('mason-lspconfig').setup({
   ensure_installed = {
     'phpactor',
-    'html_ls',
+    'html',
     'ts_ls',
     'lua_ls',
   },
