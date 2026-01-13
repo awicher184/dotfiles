@@ -23,6 +23,8 @@ alias gf='git fetch'
 alias gcam='git commit -am '
 alias gcm='git commit -m '
 alias lg='lazygit'
+# Jira
+alias jira="jiratui ui --search-on-startup --jql-expression-id 1"
 #spryker & next
 alias lhs='sudo chmod 666 /var/run/docker.sock && cd ~/projects/spryker/ && docker/sdk up'
 alias lhr='dskd && dpa && dsku && dskco transfer:g && deleteLogs'
