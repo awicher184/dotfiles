@@ -11,14 +11,6 @@ if not vim.loop.fs_stat(lazypath) then
 end
 vim.opt.rtp:prepend(lazypath)
 require('lazy').setup({
-
-  -- Git related plugins
-  'tpope/vim-fugitive',
-  'tpope/vim-rhubarb',
-
-  -- Detect tabstop and shiftwidth automatically
-  'tpope/vim-sleuth',
-
   -- Plugins related to LSP
   {
     -- LSP Configuration & Plugins
@@ -27,10 +19,6 @@ require('lazy').setup({
       -- Automatically install LSPs to stdpath for neovim
       { 'williamboman/mason.nvim', config = true },
       'williamboman/mason-lspconfig.nvim',
-
-      -- Useful status updates for LSP
-      { 'j-hui/fidget.nvim', opts = {} },
-
       'folke/neodev.nvim',
     },
   },
@@ -83,67 +71,11 @@ require('lazy').setup({
       -- Snippet Engine & its associated nvim-cmp source
       'L3MON4D3/LuaSnip',
       'saadparwaiz1/cmp_luasnip',
-
       -- Adds LSP completion capabilities
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-path',
-
       -- Adds a number of user-friendly snippets
       'rafamadriz/friendly-snippets',
-    },
-  },
-
-  -- Show you pending keybinds.
-{
-    'folke/which-key.nvim',
-    event = 'VimEnter', -- Sets the loading event to 'VimEnter'
-    opts = {
-      -- delay between pressing a key and opening which-key (milliseconds)
-      -- this setting is independent of vim.o.timeoutlen
-      delay = 0,
-      icons = {
-        -- set icon mappings to true if you have a Nerd Font
-        mappings = vim.g.have_nerd_font,
-        -- If you are using a Nerd Font: set icons.keys to an empty table which will use the
-        -- default which-key.nvim defined Nerd Font icons, otherwise define a string table
-        keys = vim.g.have_nerd_font and {} or {
-          Up = '<Up> ',
-          Down = '<Down> ',
-          Left = '<Left> ',
-          Right = '<Right> ',
-          C = '<C-…> ',
-          M = '<M-…> ',
-          D = '<D-…> ',
-          S = '<S-…> ',
-          CR = '<CR> ',
-          Esc = '<Esc> ',
-          ScrollWheelDown = '<ScrollWheelDown> ',
-          ScrollWheelUp = '<ScrollWheelUp> ',
-          NL = '<NL> ',
-          BS = '<BS> ',
-          Space = '<Space> ',
-          Tab = '<Tab> ',
-          F1 = '<F1>',
-          F2 = '<F2>',
-          F3 = '<F3>',
-          F4 = '<F4>',
-          F5 = '<F5>',
-          F6 = '<F6>',
-          F7 = '<F7>',
-          F8 = '<F8>',
-          F9 = '<F9>',
-          F10 = '<F10>',
-          F11 = '<F11>',
-          F12 = '<F12>',
-        },
-      },
-
-      -- Document existing key chains
-      spec = {
-        { '<leader>s', group = '[S]earch' },
-        { '<leader>t', group = '[T]oggle' },
-        { '<leader>h', group = 'Git [H]unk', mode = { 'n', 'v' } },
-      },
     },
   },
   {
@@ -160,13 +92,11 @@ require('lazy').setup({
       },
       on_attach = function(bufnr)
         local gs = package.loaded.gitsigns
-
         local function map(mode, l, r, opts)
           opts = opts or {}
           opts.buffer = bufnr
           vim.keymap.set(mode, l, r, opts)
         end
-
         -- Navigation
         map({ 'n', 'v' }, ']c', function()
           if vim.wo.diff then
@@ -177,7 +107,6 @@ require('lazy').setup({
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to next hunk' })
-
         map({ 'n', 'v' }, '[c', function()
           if vim.wo.diff then
             return '[c'
@@ -187,7 +116,6 @@ require('lazy').setup({
           end)
           return '<Ignore>'
         end, { expr = true, desc = 'Jump to previous hunk' })
-
         -- Actions
         -- visual mode
         map('v', '<leader>hs', function()
@@ -210,24 +138,14 @@ require('lazy').setup({
         map('n', '<leader>hD', function()
           gs.diffthis '~'
         end, { desc = 'git diff against last commit' })
-
         -- Toggles
         map('n', '<leader>tb', gs.toggle_current_line_blame, { desc = 'toggle git blame line' })
         map('n', '<leader>td', gs.toggle_deleted, { desc = 'toggle git show deleted' })
-
         -- Text object
         map({ 'o', 'x' }, 'ih', ':<C-U>Gitsigns select_hunk<CR>', { desc = 'select git hunk' })
       end,
     },
   },
-  --[[  {
-    'projekt0n/github-nvim-theme',
-    lazy = false,
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme github_light')
-    end,
-  }, --]]
   {
     "EdenEast/nightfox.nvim",
     name = "nightfox",
@@ -245,38 +163,6 @@ require('lazy').setup({
       })
     end,
   },
-  --[[ {
-    "chiendo97/intellij.vim",
-    name = "intellij",
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme intellij')
-    end,
-  }, ]]
-  --[[ {
-    "sainnhe/edge",
-    name = "edge",
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme edge')
-    end,
-  },]]
-  --[[{
-    "yorik1984/newpaper.nvim",
-    name = "newpaper",
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme newpaper')
-    end,
-  },]]
-  --[[ {
-    "folke/tokyonight.nvim",
-    name = "tokyonight",
-    priority = 1000,
-    config = function()
-      vim.cmd('colorscheme tokyonight-day')
-    end,
-  },]]
   {
     'nvim-lualine/lualine.nvim',
     opts = {
@@ -288,17 +174,6 @@ require('lazy').setup({
       },
     },
   },
-
-  {
-    -- Add indentation guides even on blank lines
-    'lukas-reineke/indent-blankline.nvim',
-    main = 'ibl',
-    opts = {},
-  },
-
-  -- "gc" to comment visual regions/lines
-  { 'numToStr/Comment.nvim', opts = {} },
-
   -- Fuzzy Finder (files, lsp, etc)
   {
     'nvim-telescope/telescope.nvim',
@@ -319,7 +194,6 @@ require('lazy').setup({
       },
     },
   },
-
   {
     -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
@@ -343,23 +217,14 @@ require('lazy').setup({
     }
   },
   {
-    'dmix/elvish.vim'
+    'm4xshen/autoclose.nvim'
   },
   {
-    'm4xshen/autoclose.nvim'
-  }
-
-  -- NOTE: Next Step on Your Neovim Journey: Add/Configure additional "plugins" for kickstart
-  --       These are some example plugins that I've included in the kickstart repository.
-  --       Uncomment any of the lines below to enable them.
-  -- require 'kickstart.plugins.autoformat',
-  -- require 'kickstart.plugins.debug',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    You can use this folder to prevent any conflicts with this init.lua if you're interested in keeping
-  --    up-to-date with whatever is in the kickstart repo.
-  --    Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --
-  --    For additional information see: https://github.com/folke/lazy.nvim#-structuring-your-plugins
-  -- { import = 'custom.plugins' },
+    'mfussenegger/nvim-dap',
+    dependencies = {
+      'rcarriga/nvim-dap-ui',
+      'nvim-neotest/nvim-nio',
+      'jay-babu/mason-nvim-dap.nvim',
+    },
+  },
 }, {})
