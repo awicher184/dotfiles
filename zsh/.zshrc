@@ -4,6 +4,11 @@ export ZSH="$HOME/.oh-my-zsh"
 # path to neovim
 export PATH="$HOME/neovim/bin:$PATH"
 
+# path to composer
+if [[ -d ~/.config/composer/vendor/bin ]]; then
+	export PATH="$HOME/.config/composer/vendor/bin:$PATH"
+fi
+
 ZSH_THEME="robbyrussell"
 
 plugins=(git zsh-syntax-highlighting zsh-autosuggestions)
