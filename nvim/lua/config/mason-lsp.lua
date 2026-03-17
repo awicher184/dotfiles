@@ -11,15 +11,7 @@ local on_attach = function(_, bufnr)
   nmap('<leader>ca', vim.lsp.buf.code_action, '[C]ode [A]ction')
 
   nmap('gd', function()
-    local ok, laravel = pcall(function() return Laravel end)
-    if ok and laravel and laravel.app then
-      local gf_ok, gf = pcall(function() return laravel.app('gf') end)
-      if gf_ok and gf and gf.cursorOnResource() then
-        laravel.commands.run('gf')
-        return
-      end
-    end
-    require('telescope.builtin').lsp_definitions()
+    vim.lsp.buf.definition()
   end, '[G]oto [D]efinition')
   nmap('gr', require('telescope.builtin').lsp_references, '[G]oto [R]eferences')
   nmap('gI', require('telescope.builtin').lsp_implementations, '[G]oto [I]mplementation')
