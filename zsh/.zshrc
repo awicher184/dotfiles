@@ -43,3 +43,6 @@ source /usr/share/doc/fzf/examples/key-bindings.zsh
 
 # fzf auto-completion
 source /usr/share/doc/fzf/examples/completion.zsh
+
+#ssh setup via keychain for i3
+#eval $(keychain --eval --agents ssh --quiet awicher)
