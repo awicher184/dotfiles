@@ -1,9 +1,27 @@
+-- Blade filetype detection
+vim.filetype.add({
+  pattern = {
+    ['.*%.blade%.php'] = 'blade',
+  },
+})
+
+-- Register tree-sitter-blade as a custom parser
+local parser_config = require('nvim-treesitter.parsers').get_parser_configs()
+parser_config.blade = {
+  install_info = {
+    url = 'https://github.com/EmranMR/tree-sitter-blade',
+    files = { 'src/parser.c' },
+    branch = 'main',
+  },
+  filetype = 'blade',
+}
+
 -- See `:help nvim-treesitter`
 -- Defer Treesitter setup after first render to improve startup time of 'nvim {filename}'
 vim.defer_fn(function()
   require('nvim-treesitter.configs').setup {
     -- Add languages to be installed here that you want installed for treesitter
-    ensure_installed = { 'c', 'cpp', 'go', 'lua', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
+    ensure_installed = { 'blade', 'c', 'cpp', 'go', 'lua', 'php', 'python', 'rust', 'tsx', 'javascript', 'typescript', 'vimdoc', 'vim', 'bash' },
 
     -- Autoinstall languages that are not installed. Defaults to false (but you can change for yourself!)
     auto_install = false,

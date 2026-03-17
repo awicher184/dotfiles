@@ -44,6 +44,7 @@ cmp.setup {
   },
   sources = {
     { name = 'nvim_lsp' },
+    { name = 'laravel' },
     { name = 'luasnip' },
     { name = 'path' },
   },

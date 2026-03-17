@@ -227,4 +227,26 @@ require('lazy').setup({
       'jay-babu/mason-nvim-dap.nvim',
     },
   },
+  {
+    'RicardoRamirezR/blade-nav.nvim',
+    dependencies = { 'hrsh7th/nvim-cmp' },
+    ft = { 'php', 'blade' },
+  },
+  {
+    'adalessa/laravel.nvim',
+    dependencies = {
+      'MunifTanjim/nui.nvim',
+      'nvim-lua/plenary.nvim',
+      'nvim-neotest/nvim-nio',
+    },
+    ft = { 'php', 'blade' },
+    event = { 'BufEnter composer.json' },
+    opts = {
+      extensions = {
+        route_info = { enable = true },
+        model_info = { enable = true },
+        override = { enable = true },
+      },
+    },
+  },
 }, {})
