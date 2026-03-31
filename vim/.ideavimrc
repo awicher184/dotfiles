@@ -1,0 +1,31 @@
+syntax on
+
+" line numbers
+set number
+set relativenumber
+
+" tab & indent settings
+set tabstop=4
+set shiftwidth=4
+set softtabstop=4
+set expandtab
+set smartindent
+
+" persistent undo between opening and closing
+set undofile
+
+" search
+set nohlsearch
+set incsearch
+set ignorecase
+set smartcase
+
+" split settings
+set splitbelow
+set splitright
+
+set hidden
+set scrolloff=10
+set encoding=utf8
+
+set clipboard=unnamedplus
