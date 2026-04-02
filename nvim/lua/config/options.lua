@@ -49,6 +49,7 @@ vim.o.completeopt = 'menuone,noselect'
 -- NOTE: You should make sure your terminal supports this
 vim.o.termguicolors = true
 vim.opt.background = 'light';
+vim.cmd("colorscheme emerald-forest")
 
 vim.o.autoindent = true
 vim.o.expandtab = false
