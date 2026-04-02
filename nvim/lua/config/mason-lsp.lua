@@ -45,6 +45,8 @@ require('mason-lspconfig').setup({
     'html',
     'ts_ls',
     'lua_ls',
+    'bashls',
+    'marksman',
   },
   automatic_enable = true,
 })
@@ -71,6 +73,11 @@ vim.lsp.config('lua_ls', {
       telemetry = { enable = false },
     },
   },
+  on_attach = on_attach,
+  capabilities = capabilities
+})
+
+vim.lsp.config('marksman', {
   on_attach = on_attach,
   capabilities = capabilities
 })
