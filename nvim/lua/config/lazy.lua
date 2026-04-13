@@ -105,23 +105,6 @@ require('lazy').setup({
 		},
 	},
 	{
-		"EdenEast/nightfox.nvim",
-		name = "nightfox",
-		priority = 1000
-		-- config = function()
-		-- 	vim.cmd('colorscheme dayfox')
-		-- end,
-	},
-	{
-		"neanias/everforest-nvim",
-		priority = 1000,
-		config = function()
-			require("everforest").setup({
-				background = "hard"
-			})
-		end,
-	},
-	{
 		'nvim-lualine/lualine.nvim',
 		opts = {
 			options = {
